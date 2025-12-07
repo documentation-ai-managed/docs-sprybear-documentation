@@ -1,0 +1,158 @@
+---
+title: Quick Start
+description: Get started with sprybear Documentation in minutes
+---
+
+## Setting Up Your First Project
+
+Welcome to sprybear Documentation! This guide will walk you through creating your first documentation space in just a few minutes. Whether you're documenting a new API, setting up project guides, or migrating existing docs, we'll get you up and running quickly.
+
+<Steps>
+  <Step title="Create a GitHub Repository" icon="git-branch">
+    Start by creating a new repository on GitHub or using an existing one. Make sure you have write access to the repository.
+  </Step>
+  <Step title="Install sprybear CLI" icon="download">
+    Install the sprybear command-line tool globally:
+    
+    <CodeGroup tabs="npm,yarn">
+      ```bash
+      npm install -g @sprybear/docs-cli
+      ```
+      ```bash
+      yarn global add @sprybear/docs-cli
+      ```
+    </CodeGroup>
+  </Step>
+  <Step title="Initialize Documentation" icon="play">
+    Navigate to your project directory and initialize sprybear documentation:
+    
+    ```bash
+    cd my-project
+    sprybear init
+    ```
+    
+    This creates a `docs/` directory with basic configuration files.
+  </Step>
+  <Step title="Configure Repository Connection" icon="settings">
+    Edit the generated `sprybear.config.js` file to connect to your GitHub repository:
+    
+    ```javascript
+    module.exports = {
+      repository: 'your-org/your-repo',
+      branch: 'main',
+      token: process.env.GITHUB_TOKEN
+    };
+    ```
+  </Step>
+  <Step title="Write Your First Page" icon="edit">
+    Create your first documentation page in `docs/introduction.mdx`:
+    
+    ```markdown
+    ---
+    title: Introduction
+    description: Welcome to our project
+    ---
+    
+    ## Welcome
+    
+    This is your first documentation page!
+    ```
+  </Step>
+  <Step title="Deploy Documentation" icon="upload">
+    Build and deploy your documentation:
+    
+    ```bash
+    sprybear build
+    sprybear deploy
+    ```
+    
+    Your docs will be available at the configured URL.
+  </Step>
+</Steps>
+
+## Authentication Setup
+
+To enable advanced features like automated deployments and repository synchronization, you'll need to set up authentication.
+
+<Tabs>
+  <Tab title="Personal Access Token" icon="key">
+    Create a GitHub Personal Access Token with `repo` scope:
+    
+    1. Go to GitHub Settings → Developer settings → Personal access tokens
+    2. Generate new token with `repo` permissions
+    3. Set as `GITHUB_TOKEN` environment variable
+    
+    ```bash
+    export GITHUB_TOKEN=your_token_here
+    ```
+  </Tab>
+  <Tab title="GitHub App" icon="settings">
+    For organizations, create a GitHub App for better security:
+    
+    1. Create new GitHub App in your organization
+    2. Grant repository permissions
+    3. Install the app on your repositories
+    4. Use the generated private key for authentication
+  </Tab>
+</Tabs>
+
+## Basic Configuration
+
+Your `sprybear.config.js` file controls how your documentation behaves. Here's a basic setup:
+
+```javascript
+const config = {
+  repository: 'my-org/my-project',
+  branch: 'main',
+  output: './dist',
+  theme: {
+    primaryColor: '#3B82F6',
+    logo: 'https://example.com/logo.png'
+  },
+  navigation: {
+    tabs: [
+      { tab: 'Documentation', path: 'docs' },
+      { tab: 'API Reference', path: 'api' }
+    ]
+  }
+};
+
+export default config;
+```
+
+<Callout kind="info">The configuration file uses JavaScript, so you can include dynamic values and environment variables.</Callout>
+
+## Adding Content
+
+Sprybear supports standard Markdown with enhanced features:
+
+<Columns cols={2}>
+  <Card title="Pages" icon="file-text" href="#">
+    Create `.mdx` files for rich content with React components.
+  </Card>
+  <Card title="API Docs" icon="code" href="#">
+    Generate from OpenAPI specifications automatically.
+  </Card>
+  <Card title="Navigation" icon="menu" href="#">
+    Organize content with tabs, groups, and nested sections.
+  </Card>
+  <Card title="Search" icon="search" href="#">
+    Built-in search helps users find information quickly.
+  </Card>
+</Columns>
+
+## Troubleshooting
+
+<ExpandableGroup>
+  <Expandable title="Build Fails" default-open="false">
+    Check your `sprybear.config.js` for syntax errors and ensure all required dependencies are installed.
+  </Expandable>
+  <Expandable title="Authentication Issues" default-open="false">
+    Verify your GitHub token has the correct permissions and hasn't expired.
+  </Expandable>
+  <Expandable title="Content Not Updating" default-open="false">
+    Clear your build cache and redeploy: `sprybear clean && sprybear build`.
+  </Expandable>
+</ExpandableGroup>
+
+<Callout kind="success">Congratulations! You've successfully set up your first sprybear documentation site.</Callout>

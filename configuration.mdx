@@ -1,0 +1,262 @@
+---
+title: Configuration
+description: Learn how to customize sprybear Documentation for your projects
+---
+
+## Configuration Overview
+
+Sprybear Documentation offers extensive customization options to match your project's branding and workflow requirements. The main configuration file `sprybear.config.js` controls everything from theme colors to navigation structure.
+
+Understanding these configuration options will help you create a documentation experience that feels native to your project.
+
+## Core Configuration
+
+The configuration object defines the fundamental settings for your documentation site:
+
+```javascript
+module.exports = {
+  repository: 'your-org/your-repo',
+  branch: 'main',
+  output: './dist',
+  basePath: '/docs',
+  title: 'My Project Documentation',
+  description: 'Comprehensive documentation for My Project'
+};
+```
+
+<ParamField path="repository" param-type="string" required="true">
+  GitHub repository in format 'owner/repo'.
+</ParamField>
+
+<ParamField path="branch" param-type="string" required="true">
+  Branch to sync documentation from, defaults to 'main'.
+</ParamField>
+
+<ParamField path="output" param-type="string" required="false">
+  Directory where built documentation will be saved.
+</ParamField>
+
+## Theme Customization
+
+Customize the visual appearance to match your brand:
+
+<Tabs>
+  <Tab title="Colors" icon="palette">
+    Set primary and accent colors:
+    
+    ```javascript
+    theme: {
+      primaryColor: '#3B82F6',
+      secondaryColor: '#64748B',
+      successColor: '#10B981',
+      warningColor: '#F59E0B',
+      dangerColor: '#EF4444'
+    }
+    ```
+  </Tab>
+  <Tab title="Typography" icon="type">
+    Configure fonts and text styling:
+    
+    ```javascript
+    theme: {
+      fontFamily: 'Inter, system-ui, sans-serif',
+      headingFontFamily: 'Inter, system-ui, sans-serif',
+      codeFontFamily: 'Fira Code, monospace'
+    }
+    ```
+  </Tab>
+  <Tab title="Layout" icon="layout">
+    Control spacing and layout options:
+    
+    ```javascript
+    theme: {
+      borderRadius: '8px',
+      spacing: {
+        small: '8px',
+        medium: '16px',
+        large: '24px'
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Navigation Structure
+
+Define how users navigate your documentation:
+
+<Steps>
+  <Step title="Basic Tabs" icon="folder">
+    Create top-level navigation tabs:
+    
+    ```javascript
+    navigation: {
+      tabs: [
+        { tab: 'Getting Started', path: 'getting-started' },
+        { tab: 'API Reference', openapi: 'openapi.yaml' },
+        { tab: 'Guides', path: 'guides' }
+      ]
+    }
+    ```
+  </Step>
+  <Step title="Grouped Content" icon="layers">
+    Organize pages into collapsible groups:
+    
+    ```javascript
+    navigation: {
+      tabs: [
+        {
+          tab: 'Documentation',
+          groups: [
+            {
+              group: 'Basics',
+              pages: [
+                { title: 'Introduction', path: 'intro' },
+                { title: 'Quick Start', path: 'quickstart' }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+    ```
+  </Step>
+  <Step title="Advanced Routing" icon="git-branch">
+    Set up custom routing rules:
+    
+    ```javascript
+    routing: {
+      redirects: {
+        '/old-path': '/new-path',
+        '/docs': '/getting-started'
+      },
+      rewrites: [
+        { source: '/api/**', destination: '/reference/**' }
+      ]
+    }
+    ```
+  </Step>
+</Steps>
+
+## API Documentation
+
+Integrate OpenAPI specifications for automatic API documentation generation:
+
+```javascript
+api: {
+  specs: [
+    {
+      title: 'REST API',
+      file: 'openapi.yaml',
+      version: 'v1.0'
+    },
+    {
+      title: 'Webhook API',
+      file: 'webhooks.yaml',
+      version: 'v1.0'
+    }
+  ]
+}
+```
+
+<Callout kind="tip">API documentation pages are automatically generated from your OpenAPI specs, including interactive examples and response schemas.</Callout>
+
+## Build and Deployment
+
+Configure how your documentation is built and deployed:
+
+<Columns cols={2}>
+  <Card title="Build Options" icon="hammer" href="#">
+    Control build process with custom scripts and optimizations.
+  </Card>
+  <Card title="Deployment" icon="upload" href="#">
+    Set up automatic deployment to GitHub Pages, Vercel, or Netlify.
+  </Card>
+</Columns>
+
+```javascript
+build: {
+  optimize: true,
+  minify: true,
+  sourceMaps: false,
+  customWebpack: (config) => {
+    // Custom webpack modifications
+    return config;
+  }
+},
+
+deploy: {
+  provider: 'github-pages',
+  repository: 'your-org/your-repo',
+  branch: 'gh-pages',
+  token: process.env.GITHUB_TOKEN
+}
+```
+
+## Plugins and Extensions
+
+Extend sprybear with custom plugins:
+
+```javascript
+plugins: [
+  {
+    name: 'custom-analytics',
+    config: {
+      trackingId: 'GA_MEASUREMENT_ID'
+    }
+  },
+  {
+    name: 'search-enhancement',
+    config: {
+      indexName: 'docs-search',
+      apiKey: process.env.ALGOLIA_API_KEY
+    }
+  }
+]
+```
+
+<ExpandableGroup>
+  <Expandable title="Available Plugins" default-open="false">
+    - Analytics integration (Google Analytics, Plausible)
+    - Search enhancements (Algolia, local search)
+    - Social sharing
+    - Comment systems (GitHub Discussions, Disqus)
+    - Custom components
+  </Expandable>
+  <Expandable title="Custom Plugins" default-open="false">
+    Create your own plugins using the sprybear plugin API for specialized functionality.
+  </Expandable>
+</ExpandableGroup>
+
+<Callout kind="info">Configuration changes require a rebuild. Use `sprybear build --watch` during development for automatic rebuilds.</Callout>
+
+## Environment Variables
+
+Use environment variables for sensitive configuration:
+
+```javascript
+// sprybear.config.js
+require('dotenv').config();
+
+module.exports = {
+  repository: process.env.REPO_NAME,
+  token: process.env.GITHUB_TOKEN,
+  api: {
+    key: process.env.API_KEY
+  }
+};
+```
+
+## Troubleshooting Configuration
+
+<ExpandableGroup>
+  <Expandable title="Configuration Errors" default-open="false">
+    Check your `sprybear.config.js` for syntax errors using `node -c sprybear.config.js`.
+  </Expandable>
+  <Expandable title="Theme Issues" default-open="false">
+    Clear build cache and rebuild: `sprybear clean && sprybear build`.
+  </Expandable>
+  <Expandable title="Navigation Problems" default-open="false">
+    Verify all paths in navigation configuration match actual file locations.
+  </Expandable>
+</ExpandableGroup>

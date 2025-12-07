@@ -1,0 +1,190 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: sprybear Documentation API
+  license:
+    name: MIT
+servers:
+  - url: https://api.sprybear.com/v1
+paths:
+  /repositories:
+    get:
+      summary: List all repositories in the documentation space. This endpoint retrieves a paginated list of repositories that the authenticated user has access to. Use this to display available projects in the documentation interface.
+      operationId: listRepositories
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: A paginated array of repositories
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repositories'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new repository in the documentation space. This endpoint allows you to add a new GitHub repository to your sprybear documentation. The repository must be accessible to the authenticated user.
+      operationId: createRepository
+      responses:
+        201:
+          description: Repository created successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /repositories/{repositoryId}:
+    get:
+      summary: Get detailed information about a specific repository. This endpoint provides comprehensive details about a repository including its configuration, documentation status, and recent activity.
+      operationId: getRepository
+      parameters:
+        - name: repositoryId
+          in: path
+          required: true
+          description: The unique identifier of the repository to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Repository details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repository'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /documents:
+    get:
+      summary: Retrieve a list of all documents across repositories. This endpoint returns paginated results of documents that can be filtered by repository, status, or content type.
+      operationId: listDocuments
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of documents to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Documents retrieved successfully
+          headers:
+            x-next:
+              description: Link to next page of results
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Documents'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new document in the documentation space. This endpoint allows you to add new documentation pages with rich content including markdown, code examples, and media.
+      operationId: createDocument
+      responses:
+        201:
+          description: Document created successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /documents/{documentId}:
+    get:
+      summary: Get detailed information about a specific document. This endpoint retrieves the full content and metadata of a document including version history and author information.
+      operationId: getDocument
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          description: The unique identifier of the document
+          schema:
+            type: string
+      responses:
+        200:
+          description: Document retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Repository:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+    Repositories:
+      type: array
+      items:
+        $ref: '#/components/schemas/Repository'
+    Document:
+      required:
+        - id
+        - title
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        content:
+          type: string
+        repositoryId:
+          type: integer
+          format: int64
+    Documents:
+      type: array
+      items:
+        $ref: '#/components/schemas/Document'
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

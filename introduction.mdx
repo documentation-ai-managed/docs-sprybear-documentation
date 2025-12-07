@@ -1,0 +1,96 @@
+---
+title: Introduction
+description: Overview of sprybear Documentation and its core capabilities
+---
+
+## Getting Started
+
+Sprybear Documentation provides a comprehensive platform for organizing and managing project documentation in GitHub repositories. Whether you're building APIs, creating user guides, or maintaining technical documentation, sprybear offers a streamlined solution to keep your docs current and accessible.
+
+This documentation space serves as your central hub for all project-related information, from quick starts to advanced configurations.
+
+<Columns cols={3}>
+  <Card title="Quick Start" icon="rocket" href="quick-start">
+    Get up and running in minutes with our guided setup process.
+  </Card>
+  <Card title="Configuration" icon="settings" href="configuration">
+    Learn how to customize sprybear to fit your project's needs.
+  </Card>
+  <Card title="Best Practices" icon="award" href="best-practices">
+    Discover expert tips for maintaining high-quality documentation.
+  </Card>
+</Columns>
+
+## Key Features
+
+Sprybear Documentation excels at helping teams create, manage, and distribute technical documentation effectively. Our platform integrates seamlessly with GitHub repositories, providing version control and collaboration features that developers already know and love.
+
+<Tabs>
+  <Tab title="For Teams" icon="users">
+    Collaborate with your team using GitHub's familiar workflow. Track changes, review contributions, and maintain documentation quality through pull requests and issue tracking.
+  </Tab>
+  <Tab title="For Developers" icon="code">
+    Focus on writing great content while sprybear handles rendering, search, and navigation. Support for Markdown, code examples, and API documentation generation.
+  </Tab>
+  <Tab title="For Organizations" icon="building">
+    Scale documentation across multiple projects with consistent branding, shared components, and centralized management.
+  </Tab>
+</Tabs>
+
+## Why Choose Sprybear?
+
+<Steps>
+  <Step title="Repository Integration" icon="git-branch">
+    Connect your GitHub repositories to automatically sync documentation with your codebase.
+  </Step>
+  <Step title="Markdown Support" icon="file-text">
+    Write in standard Markdown with enhanced features like code highlighting, tables, and embedded media.
+  </Step>
+  <Step title="API Documentation" icon="terminal">
+    Generate comprehensive API docs from OpenAPI specifications with interactive examples.
+  </Step>
+  <Step title="Search & Navigation" icon="search">
+    Powerful search functionality and intuitive navigation help users find information quickly.
+  </Step>
+</Steps>
+
+## Getting Help
+
+<ExpandableGroup>
+  <Expandable title="Need Support?" default-open="false">
+    Visit our support portal for troubleshooting guides, FAQs, and community forums.
+  </Expandable>
+  <Expandable title="Community Resources" default-open="false">
+    Join our Discord community to connect with other sprybear users and share best practices.
+  </Expandable>
+</ExpandableGroup>
+
+<Callout kind="info">Ready to get started? Head to our Quick Start guide to set up your first documentation space.</Callout>
+
+## Code Example
+
+Here's a simple example of how to initialize a new documentation project:
+
+```javascript
+const sprybear = require('sprybear-docs');
+
+const docs = new sprybear.Documentation({
+  repository: 'my-org/my-repo',
+  branch: 'main',
+  output: './docs'
+});
+
+docs.build();
+```
+
+This configuration creates a new documentation instance connected to your GitHub repository, ready to generate and deploy your docs.
+
+## Next Steps
+
+Now that you understand the basics of sprybear Documentation, explore our guides to learn more:
+
+- [Quick Start Guide](quick-start) - Set up your first project
+- [Configuration Options](configuration) - Customize your documentation
+- [Best Practices](best-practices) - Write better documentation
+
+<Callout kind="tip">Pro tip: Start with our Quick Start guide if you're new to sprybear, or jump straight to Configuration if you're migrating from another platform.</Callout>

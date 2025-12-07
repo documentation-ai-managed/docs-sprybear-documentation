@@ -1,0 +1,227 @@
+---
+title: Best Practices
+description: Expert tips for writing and maintaining high-quality documentation
+---
+
+## Documentation Philosophy
+
+Great documentation is more than just accurate information—it's an investment in your project's success. Well-written docs reduce support tickets, accelerate onboarding, and build trust with your users. This guide covers proven practices for creating documentation that users actually want to read.
+
+<Callout kind="tip">Remember: Documentation is for users first, developers second. Write for the person who will be reading it, not the one writing it.</Callout>
+
+## Content Structure
+
+Organize your documentation logically, following the principle of progressive disclosure:
+
+<Steps>
+  <Step title="Start with User Goals" icon="target">
+    Begin each section by explaining what the user will accomplish, not what the feature does.
+  </Step>
+  <Step title="Layer Information" icon="layers">
+    Present essential information first, with detailed explanations in expandable sections.
+  </Step>
+  <Step title="Use Consistent Patterns" icon="repeat">
+    Follow the same structure across similar pages for predictable navigation.
+  </Step>
+  <Step title="End with Next Steps" icon="arrow-right">
+    Always suggest what to do after completing the current task.
+  </Step>
+</Steps>
+
+## Writing Style Guidelines
+
+<Tabs>
+  <Tab title="Clarity" icon="eye">
+    Use simple, direct language. Avoid jargon unless you define it immediately.
+    
+    **Good:** "Click the Save button to store your changes."
+    **Bad:** "Persist the current state to the datastore."
+    
+    Define technical terms on first use: "Use the API key (a unique identifier for your application) to authenticate requests."
+  </Tab>
+  <Tab title="Active Voice" icon="zap">
+    Write in active voice to make instructions clearer.
+    
+    **Good:** "Install the package using npm."
+    **Bad:** "The package should be installed using npm."
+  </Tab>
+  <Tab title="Present Tense" icon="clock">
+    Use present tense for timeless information.
+    
+    **Good:** "The API returns user data."
+    **Bad:** "The API will return user data."
+  </Tab>
+</Tabs>
+
+## Code Examples
+
+Code examples should be realistic, runnable, and educational:
+
+<Columns cols={2}>
+  <Card title="Realistic Data" icon="database" href="#">
+    Use meaningful variable names and realistic values.
+  </Card>
+  <Card title="Complete Examples" icon="check-circle" href="#">
+    Include necessary imports and error handling.
+  </Card>
+  <Card title="Multiple Languages" icon="code" href="#">
+    Show examples in popular languages when possible.
+  </Card>
+  <Card title="Progressive Complexity" icon="trending-up" href="#">
+    Start simple, then show advanced usage.
+  </Card>
+</Columns>
+
+```javascript
+// Good: Realistic, complete example
+const axios = require('axios');
+
+async function getUserData(userId) {
+  try {
+    const response = await axios.get(`/api/users/${userId}`, {
+      headers: {
+        'Authorization': `Bearer ${process.env.API_KEY}`
+      }
+    });
+    
+    console.log('User data:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch user:', error.message);
+    throw error;
+  }
+}
+
+// Usage
+getUserData('12345');
+```
+
+<Callout kind="danger">Avoid placeholder data like `foo`, `bar`, or `lorem ipsum` in examples. Users copy-paste code directly.</Callout>
+
+## Visual Design
+
+Make your documentation visually appealing and scannable:
+
+<ExpandableGroup>
+  <Expandable title="Use Headings Effectively" default-open="false">
+    H2 for main sections, H3 for subsections. Never skip levels (H2 → H4).
+  </Expandable>
+  <Expandable title="Break Up Text" default-open="false">
+    Use short paragraphs (3-5 sentences), bullet points, and numbered lists.
+  </Expandable>
+  <Expandable title="Highlight Important Information" default-open="false">
+    Use callouts for warnings, tips, and important notes.
+  </Expandable>
+  <Expandable title="Include Visual Aids" default-open="false">
+    Add diagrams, flowcharts, and screenshots when they clarify concepts.
+  </Expandable>
+</ExpandableGroup>
+
+## API Documentation
+
+API docs should make integration as easy as possible:
+
+<Steps>
+  <Step title="Clear Endpoint Descriptions" icon="file-text">
+    Write detailed descriptions explaining when and why to use each endpoint.
+  </Step>
+  <Step title="Complete Request/Response Examples" icon="code">
+    Show full HTTP requests with headers and realistic JSON payloads.
+  </Step>
+  <Step title="Error Handling" icon="alert-triangle">
+    Document all error responses and how to handle them.
+  </Step>
+  <Step title="Rate Limits and Pagination" icon="clock">
+    Explain API limits and how to work within them.
+  </Step>
+</Steps>
+
+```javascript
+// API example with error handling
+const createUser = async (userData) => {
+  const response = await fetch('/api/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.API_KEY}`
+    },
+    body: JSON.stringify({
+      name: 'John Doe',
+      email: 'john@example.com',
+      role: 'developer'
+    })
+  });
+  
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(`API Error: ${error.message}`);
+  }
+  
+  return response.json();
+};
+```
+
+## Maintenance Practices
+
+Keep documentation current and useful over time:
+
+<Tabs>
+  <Tab title="Regular Reviews" icon="refresh-cw">
+    Schedule quarterly reviews of documentation for accuracy and completeness.
+  </Tab>
+  <Tab title="Version Sync" icon="git-branch">
+    Update docs when code changes, especially for breaking changes.
+  </Tab>
+  <Tab title="User Feedback" icon="message-square">
+    Include feedback mechanisms and monitor usage analytics.
+  </Tab>
+  <Tab title="Automation" icon="zap">
+    Use tools to check for broken links and outdated examples.
+  </Tab>
+</Tabs>
+
+<Callout kind="info">Consider documentation as part of your development workflow—review docs in pull requests alongside code changes.</Callout>
+
+## Tools and Workflows
+
+Leverage tools to improve documentation quality:
+
+<Columns cols={3}>
+  <Card title="Linting" icon="check" href="#">
+    Use tools like Vale or alex for style and tone consistency.
+  </Card>
+  <Card title="Testing" icon="test-tube" href="#">
+    Test code examples automatically with CI/CD pipelines.
+  </Card>
+  <Card title="Analytics" icon="bar-chart" href="#">
+    Track which pages are most visited and where users get stuck.
+  </Card>
+</Columns>
+
+## Common Pitfalls
+
+<ExpandableGroup>
+  <Expandable title="Outdated Information" default-open="false">
+    Documentation becomes worthless when it's not kept current with code changes.
+  </Expandable>
+  <Expandable title="Developer-Centric Writing" default-open="false">
+    Writing for other developers assumes too much context and knowledge.
+  </Expandable>
+  <Expandable title="Poor Organization" default-open="false">
+    Random organization makes information hard to find when users need it.
+  </Expandable>
+  <Expandable title="Missing Context" default-open="false">
+    Not explaining why something matters or when to use it.
+  </Expandable>
+</ExpandableGroup>
+
+## Measuring Success
+
+Track documentation effectiveness:
+
+- **Usage Metrics:** Page views, search queries, time on page
+- **User Feedback:** Surveys, support tickets, feature requests
+- **Completion Rates:** How often users complete guided tutorials
+- **Search Performance:** Percentage of searches that find relevant results
+
+<Callout kind="success">Great documentation turns users into advocates and reduces support burden. Invest in it like you would in code quality.</Callout>
