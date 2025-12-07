@@ -1,96 +1,116 @@
 ---
-title: Introduction
-description: Overview of sprybear Documentation and its core capabilities
+title: Hosting-as-a-Business (HaaB)
+description: High-level overview of the Hosting-as-a-Business framework and how to use this guide.
 ---
 
-## Getting Started
+## Getting started
 
-Sprybear Documentation provides a comprehensive platform for organizing and managing project documentation in GitHub repositories. Whether you're building APIs, creating user guides, or maintaining technical documentation, sprybear offers a streamlined solution to keep your docs current and accessible.
+Hosting-as-a-Business (HaaB) is a framework designed to help you understand what it takes to start and operate a hosting‑related business. It offers general guidance, mental models, and practical considerations for entering the hosting industry. This is not a strict recipe, legal advice, or a complete business plan. Instead, it provides a structured starting point to think through your idea, evaluate the market, and make informed decisions as you build.
 
-This documentation space serves as your central hub for all project-related information, from quick starts to advanced configurations.
+This documentation serves as your main entry point into the framework. You will find high‑level concepts, actionable steps, and references to more detailed sections covering business fundamentals, technology, operations, pricing, and customer experience.
 
 <Columns cols={3}>
   <Card title="Quick Start" icon="rocket" href="quick-start">
-    Get up and running in minutes with our guided setup process.
+  
+    Begin with a guided overview of the key decisions you&apos;ll make when entering the hosting industry.
+  
   </Card>
   <Card title="Configuration" icon="settings" href="configuration">
-    Learn how to customize sprybear to fit your project's needs.
+  
+    Explore ways to shape your business model, technical approach, and operational structure.
+  
   </Card>
   <Card title="Best Practices" icon="award" href="best-practices">
-    Discover expert tips for maintaining high-quality documentation.
+  
+    Learn foundational principles that help hosting businesses stay reliable, competitive, and sustainable.
+  
   </Card>
 </Columns>
 
-## Key Features
+## What this framework covers
 
-Sprybear Documentation excels at helping teams create, manage, and distribute technical documentation effectively. Our platform integrates seamlessly with GitHub repositories, providing version control and collaboration features that developers already know and love.
+HaaB helps you navigate the early stages of planning and launching a hosting business, whether you are exploring shared hosting, managed services, niche micro‑hosting, or a specialized infrastructure offering.
 
 <Tabs>
-  <Tab title="For Teams" icon="users">
-    Collaborate with your team using GitHub's familiar workflow. Track changes, review contributions, and maintain documentation quality through pull requests and issue tracking.
+  <Tab title="Business foundations" icon="bar-chart">
+  
+    Understand your potential customers, evaluate competitors, and clarify your value proposition. Learn how hosting niches work and what makes a service compelling.
+  
   </Tab>
-  <Tab title="For Developers" icon="code">
-    Focus on writing great content while sprybear handles rendering, search, and navigation. Support for Markdown, code examples, and API documentation generation.
+  <Tab title="Technical considerations" icon="monitor">
+  
+    Review the basic hosting stack, deployment patterns, and operational expectations. You do not need to be an expert to start, but you should know the fundamental building blocks.
+  
   </Tab>
-  <Tab title="For Organizations" icon="building">
-    Scale documentation across multiple projects with consistent branding, shared components, and centralized management.
+  <Tab title="Service operations" icon="users">
+  
+    Learn about customer support expectations, monitoring, incident response, and communicating reliability to your users.
+  
   </Tab>
 </Tabs>
 
-## Why Choose Sprybear?
+## How to use this guide
 
 <Steps>
-  <Step title="Repository Integration" icon="git-branch">
-    Connect your GitHub repositories to automatically sync documentation with your codebase.
+  <Step title="Validate your idea" icon="check-circle">
+  
+    Identify the problem you want to solve and the customers you want to serve. Use the Quick Start section to build a high‑level profile of your target market.
+  
   </Step>
-  <Step title="Markdown Support" icon="file-text">
-    Write in standard Markdown with enhanced features like code highlighting, tables, and embedded media.
+  <Step title="Select your hosting model" icon="package">
+  
+    Explore options such as shared hosting, virtual servers, managed services, or niche hosting. The Configuration guide outlines common approaches and their tradeoffs.
+  
   </Step>
-  <Step title="API Documentation" icon="terminal">
-    Generate comprehensive API docs from OpenAPI specifications with interactive examples.
+  <Step title="Prepare operations" icon="settings">
+  
+    Consider what it means to provide reliable uptime, handle customer inquiries, and maintain security. The Best Practices section highlights standard expectations.
+  
   </Step>
-  <Step title="Search & Navigation" icon="search">
-    Powerful search functionality and intuitive navigation help users find information quickly.
+  <Step title="Plan for pricing and growth" icon="zap">
+  
+    Think through recurring costs, margin expectations, and how to scale responsibly. HaaB encourages a lightweight, iterative approach rather than a rigid long‑term plan.
+  
   </Step>
 </Steps>
 
-## Getting Help
+## Important notes
 
 <ExpandableGroup>
-  <Expandable title="Need Support?" default-open="false">
-    Visit our support portal for troubleshooting guides, FAQs, and community forums.
+  <Expandable title="General guidance only" default-open="false">
+  
+    HaaB provides broad recommendations and conceptual models. It is not legal, financial, or professional business advice. You should consult appropriate experts when making high‑impact decisions.
+  
   </Expandable>
-  <Expandable title="Community Resources" default-open="false">
-    Join our Discord community to connect with other sprybear users and share best practices.
+  <Expandable title="Not an exhaustive business plan" default-open="false">
+  
+    The framework introduces essential concepts without trying to cover every scenario. Each hosting business is unique; use this guide as a foundation, not a complete solution.
+  
   </Expandable>
 </ExpandableGroup>
 
-<Callout kind="info">Ready to get started? Head to our Quick Start guide to set up your first documentation space.</Callout>
+<Callout kind="info">If you are just beginning, start with the Quick Start guide to build a basic understanding of the hosting landscape.</Callout>
 
-## Code Example
+## Simple planning checklist
 
-Here's a simple example of how to initialize a new documentation project:
+Here is a lightweight example of what an early planning checklist might look like:
 
-```javascript
-const sprybear = require('sprybear-docs');
-
-const docs = new sprybear.Documentation({
-  repository: 'my-org/my-repo',
-  branch: 'main',
-  output: './docs'
-});
-
-docs.build();
+```text
+- Define your target customer group.
+- Choose your initial hosting model.
+- Estimate your monthly operating costs.
+- Outline your support expectations.
+- Identify at least one differentiator.
 ```
 
-This configuration creates a new documentation instance connected to your GitHub repository, ready to generate and deploy your docs.
+This is not a predefined template. Adapt it to match your goals and the scale of the business you want to build.
 
-## Next Steps
+## Next steps
 
-Now that you understand the basics of sprybear Documentation, explore our guides to learn more:
+Now that you have an overview of the HaaB framework, explore the supporting guides to learn more:
 
-- [Quick Start Guide](quick-start) - Set up your first project
-- [Configuration Options](configuration) - Customize your documentation
-- [Best Practices](best-practices) - Write better documentation
+- [Quick Start](/quick-start) - Build your initial concept
+- [Configuration](/configuration) - Shape your operational and technical approach
+- [Best Practices](/best-practices) - Strengthen your reliability and user experience
 
-<Callout kind="tip">Pro tip: Start with our Quick Start guide if you're new to sprybear, or jump straight to Configuration if you're migrating from another platform.</Callout>
+<Callout kind="tip">If you prefer a structured learning path, begin with Quick Start. If you already have a business idea, jump directly into Configuration.</Callout>
